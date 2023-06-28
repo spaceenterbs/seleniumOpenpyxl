@@ -5,8 +5,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 # 아이디, 패스워드, 닉네임, 이메일,폰넘버, 게시판이름
 class User(AbstractUser):
-    first_name = models.CharField(("first name"), max_length=150, blank=False)
-    last_name = models.CharField(("last name"), max_length=150, blank=False)
+    first_name = models.CharField(("first name"), max_length=150, editable=False)
+    last_name = models.CharField(("last name"), max_length=150, editable=False)
 
     name = models.CharField(max_length=30)
     description = models.TextField()
