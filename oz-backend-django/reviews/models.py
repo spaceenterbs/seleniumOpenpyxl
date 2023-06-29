@@ -2,27 +2,10 @@ from django.db import models
 from common.models import CommonModel
 
 
-# Create your models here.
-# 댓글저자, 작성날짜, 내용, 그림내용
+# 작성자, 날짜, 좋아요 수, 내용
 class Review(models.Model):
+    like_num = models.PositiveIntegerField()
     content = models.TextField()
-    likes_num = models.PositiveIntegerField()
 
-    # created
-    # updated
-
-    # review_writer = models.CharField(max_length=50)
-
-    # review_writer_date = models.CharField(max_length=50)
-
-    # content = models.TextField
-    # content_image = models.ImageField()  # 댓글에 이미지 넣기
-
-
-# 좋아요갯수, 댓글갯수, 날짜, 내용, 작성자, 사진, 위치, 이미지
-# class Board(models.Model):
-#     like_num = models.PositiveIntegerField()
-#     review_num = models.PositiveIntegerField()
-#     writer_date = models.CharField(max_length=50)
-#     writer = models.CharField(max_length=50)
-#     content = models.TextField()
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    board = models.ForeignKey("boards.Board", on_delete=models.CASCADE)
