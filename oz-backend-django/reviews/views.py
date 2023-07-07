@@ -6,7 +6,7 @@ from .serializers import ReviewSerializer
 
 
 # GET: 전체 리뷰 데이터 가져오기
-class Reviews:
+class Reviews(APIView):
     def get(self, request):
         Reviews = Review.objects.all()  # 장고 객체
 

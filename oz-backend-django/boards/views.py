@@ -74,3 +74,23 @@ class BoardDetail(APIView):
         print(serializer)
 
         return Response(serializer.data)
+
+    from rest_framework.exceptions import NotFound  # 데이터를 찾지 못한 경우에 내려주는 오류
+    from rest_framework.status import HTTP_202_NO_CONTENT
+
+    def delete(self, request, board_id):
+        Board.objects.get(id=board_id)
+
+        if request.user.is_authenticate:
+            raise NotAuthenticated
+
+        if request.user != board.user:  # 로그인한 유저랑 글을 작성한 유저가 다르면
+            raise PermissionError
+
+        board.delete()
+
+        return Response(status=HTTP_202_NO_CONTENT)
+
+        # 지운다.
+        # -> 로그인 하지 않은 사용자는 해당 API를 사용할 수 없다.
+        # -> 본인이 작성한 게시글만 지울 수 있다.
